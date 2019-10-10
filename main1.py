@@ -14,12 +14,12 @@ SCREEN_HEIGHT = 600
 MARGIN = 30
 SCREEN_TITLE = "Particle Exercise"
 
-PARTICLE_MIN_SCALE = 0.01
-PARTICLE_MAX_SCALE = 0.08
+PARTICLE_MIN_SCALE = 0.05
+PARTICLE_MAX_SCALE = 0.3
 PARTICLE_MIN_X = -20
 PARTICLE_MAX_X = 20
 PARTICLE_VELOCITY_X = 0
-PARTICLE_VELOCITY_Y = 4
+PARTICLE_VELOCITY_Y = 7
 PARTICLE_MIN_AX = -0.1
 PARTICLE_MAX_AX = 0.1
 PARTICLE_MIN_AY = -0.1
@@ -41,16 +41,16 @@ class Particle(arcade.Sprite):
         self.color_pos = 0
 
         self.particle_colors = [
-            (open_color.red_5, 4)
-            ,(open_color.red_4, 5)
-            ,(open_color.red_3, 6)
-            ,(open_color.red_2, 7)
-            ,(open_color.red_1, 8)
-            ,(open_color.teal_1, 8)
-            ,(open_color.teal_2, 7)
-            ,(open_color.teal_3, 6)
-            ,(open_color.teal_4, 5)
-            ,(open_color.teal_5, 4)
+            (open_color.gray_5, 4)
+            ,(open_color.gray_4, 5)
+            ,(open_color.gray_3, 6)
+            ,(open_color.gray_2, 7)
+            ,(open_color.gray_1, 8)
+            ,(open_color.gray_1, 8)
+            ,(open_color.gray_2, 7)
+            ,(open_color.gray_3, 6)
+            ,(open_color.gray_4, 5)
+            ,(open_color.gray_5, 4)
         ]
         (self.color, self.lifetime) = self.particle_colors[self.color_pos]
         self.alive = True
@@ -110,13 +110,13 @@ class Window(arcade.Window):
             decay = random.uniform(PARTICLE_MIN_DECAY,PARTICLE_MAX_DECAY)
             scale = random.uniform(PARTICLE_MIN_SCALE,PARTICLE_MAX_SCALE)
             #Particle(asset, sprite scale, initial position [x], initial position [y], velocity [x], velocity [y], acceleration [x], acceleration [y], scale decay)
-            particle = Particle('circle_05',scale,x,y,dx,dy,ax,ay,decay)
+            particle = Particle('smoke_08',scale,x,y,dx,dy,ax,ay,decay) 
 
             self.particle_list.append(particle)
 
         for p in self.particle_list:
             #if the particle is off the edge of the screen, kill it
-            if p.center_x < -50 or p.center_x > SCREEN_WIDTH + 50 or p.center_y < -50 or p.center_y > SCREEN_HEIGHT + 50:
+            if p.center_x < -20 or p.center_x > SCREEN_WIDTH + 0 or p.center_y < -20 or p.center_y > SCREEN_HEIGHT + 0:
                 p.kill()
             #if it has reached the end of its life
             if not p.alive:
